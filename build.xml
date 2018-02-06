@@ -1,12 +1,30 @@
 <project>
 
+
     <target name="clean">
         <delete dir="build"/>
+    	<delete dir="${build}"/>
+    	<delete dir="${lib.dir}"/>
+    	<delete dir="dist"/>
+    	<delete dir="build"/>
     </target>
-
-    <target name="compile">
+	<target name="init">
+	    <!-- Create the time stamp -->
+	    <tstamp/>
+	    <!-- Create the build directory structure used by compile -->
+	    <mkdir dir="${build}"/>
+		<mkdir dir="${lib.dir}"/>
+	  </target>
+	
+	 <path id="classpath">
+	        <fileset dir="lib" includes="**/*.jar"/>
+	    </path>
+	
+    <target name="compile" depends="init">
         <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes"/>
+      <!--  <javac srcdir="src/jenkins" destdir="build/classes"/>-->
+    	<javac srcdir="src" destdir="build/classes" encoding="UTF-8" includeantruntime="false" classpathref="classpath"/>
+    	
     </target>
 
     <target name="jar">
@@ -21,5 +39,12 @@
     <target name="run">
         <java jar="build/jar/jenkins.jar" fork="true"/>
     </target>
+	
+	<target name="war" depends="compile">
+	    <war destfile="dist/AntExample.war">
+	        <lib dir="lib"/>
+	        <classes dir="build/classes"/>
+	    </war>
+	</target>
 
 </project>
