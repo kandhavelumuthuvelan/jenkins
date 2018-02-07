@@ -41,7 +41,7 @@
     </target>
 	
 	<target name="war" depends="clean,init,compile">
-	    <war destfile="dist/AntExample.war">
+	    <war destfile="dist/AntExample.war" needxmlfile="false" >
 	        <lib dir="lib"/>
 	        <classes dir="build/classes"/>
 	    </war>
