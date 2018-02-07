@@ -23,7 +23,7 @@
     <target name="compile" depends="init">
         <mkdir dir="build/classes"/>
       <!--  <javac srcdir="src/jenkins" destdir="build/classes"/>-->
-    	<javac srcdir="src" destdir="build/classes" encoding="UTF-8" includeantruntime="false" classpathref="classpath"/>
+    	<javac srcdir="src" destdir="build/classes" encoding="UTF-8" includeantruntime="false"  classpathref="classpath"/>
     	
     </target>
 
