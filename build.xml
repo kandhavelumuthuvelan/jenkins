@@ -40,7 +40,7 @@
         <java jar="build/jar/jenkins.jar" fork="true"/>
     </target>
 	
-	<target name="war" depends="compile">
+	<target name="war" depends="clean,init,compile">
 	    <war destfile="dist/AntExample.war">
 	        <lib dir="lib"/>
 	        <classes dir="build/classes"/>
