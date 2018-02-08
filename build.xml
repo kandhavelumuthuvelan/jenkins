@@ -54,11 +54,7 @@
 		        <classes dir="build/classes"/>
 		    </war>
 		</target>
-	    <war destfile="dist/AntExample.war" needxmlfile="false" >
-	        <lib dir="lib"/>
-	        <classes dir="build/classes"/>
-	    </war>
-	</target>
+	    
 
 
 </project>
