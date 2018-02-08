@@ -49,18 +49,16 @@
         <java jar="build/jar/jenkins.jar" fork="true"/>
     </target>
 	<target name="war" depends="clean,init,compile">
-<<<<<<< HEAD
 		    <war destfile="dist/AntExample.war" needxmlfile="false" >
 		        <lib dir="lib"/>
 		        <classes dir="build/classes"/>
 		    </war>
 		</target>
-=======
 	    <war destfile="dist/AntExample.war" needxmlfile="false" >
 	        <lib dir="lib"/>
 	        <classes dir="build/classes"/>
 	    </war>
 	</target>
->>>>>>> f3efc9a7ed6d1c859e0835fb4cc62093e8b762c4
+
 
 </project>
