@@ -1,6 +1,6 @@
 <project>
 
-
+	
     <target name="clean">
         <delete dir="build"/>
     	<delete dir="${build}"/>
@@ -8,16 +8,20 @@
     	<delete dir="dist"/>
     	<delete dir="build"/>
     </target>
-	<target name="init">
+	<target name="init" depends="clean">
 	    <!-- Create the time stamp -->
 	    <tstamp/>
 	    <!-- Create the build directory structure used by compile -->
 	    <mkdir dir="${build}"/>
 		<mkdir dir="${lib.dir}"/>
+		<mkdir dir="dist"/>
 	  </target>
-	
-	 <path id="classpath">
-	        <fileset dir="lib" includes="**/*.jar"/>
+	<property name="dist.lib.dir" location="dist/lib" />
+	<path id="classpath">
+	 
+	 	<fileset dir="lib">
+	 					<include name="*.jar"/>
+	 				</fileset>
 	    </path>
 	
     <target name="compile" depends="init">
@@ -26,25 +30,29 @@
     	<javac srcdir="src" destdir="build/classes" encoding="UTF-8" includeantruntime="false"  classpathref="classpath"/>
     	
     </target>
+	
+	
+	
 
     <target name="jar" depends="compile">
         <mkdir dir="build/jar"/>
-        <jar destfile="build/jar/jenkins.jar" basedir="build/classes">
+        <jar jarfile="build/jar/jenkins.jar" basedir="build/classes"  filesetmanifest="mergewithoutmain">
+        	<zipgroupfileset dir="lib" includes="*.jar" excludes="META-INF/*.SF"/>
             <manifest>
-                <attribute name="Main-Class" value="oata.jenkins"/>
+                <attribute name="Main-Class" value="jenkins.mail" />
+            	<attribute name="Class-Path" value="."/>
             </manifest>
         </jar>
     </target>
 
-    <target name="run">
+    <target name="run" depends="compile,jar" >
         <java jar="build/jar/jenkins.jar" fork="true"/>
     </target>
-	
 	<target name="war" depends="clean,init,compile">
-	    <war destfile="dist/AntExample.war">
-	        <lib dir="lib"/>
-	        <classes dir="build/classes"/>
-	    </war>
-	</target>
+		    <war destfile="dist/AntExample.war" needxmlfile="false" >
+		        <lib dir="lib"/>
+		        <classes dir="build/classes"/>
+		    </war>
+		</target>
 
 </project>

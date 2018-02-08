@@ -31,13 +31,7 @@ public class mail {
                 return new PasswordAuthentication(username, password);
             }
           });
-        StringBuffer bf=new StringBuffer();
-        for(int i=0;i<5;i++)
-        {
-        	bf.append(receipt);
-        	bf.append(";");
-        }
-System.out.print(receipt);
+        
         try {
         	
             Message message = new MimeMessage(session);
@@ -49,7 +43,7 @@ System.out.print(receipt);
 
             Transport.send(message);
 
-            System.out.println("Done");
+            System.out.println("Done"+receipt);
 
         	 } catch (MessagingException e) {
             throw new RuntimeException(e);
